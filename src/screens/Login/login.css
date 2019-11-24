@@ -1,0 +1,26 @@
+.logForm { 
+    border: 1px solid burlywood;
+    display: flex;
+    margin: 0 auto;
+    width: 20%;
+    flex-direction: column;
+    padding: 20px;
+    margin-top:50px;
+    color: white;
+}
+
+ 
+.box-1{
+    margin-top:30px;
+    display: flex;
+    align-items: center;
+}
+
+#submit {
+    margin-left: 100px;
+}
+
+.loginbtn{
+    width: 50%;
+    margin: 0 auto;
+}
