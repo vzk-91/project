@@ -7,7 +7,7 @@ import {getPeople} from '../../../api/index'
 const Blogers = () =>{
     const [data, setData] = useState([])
     useEffect(()=>{
-          getPeople.then(function (data) { 
+          getPeople().then(function (data) { 
             return  setData(data)  
         });
     },[])

@@ -8,7 +8,7 @@ const Posts = (props) => {
     const [data, setData] = useState([]);
 
     useEffect(()=>{
-        getPost.then(function (data) { 
+        getPost().then(function (data) { 
           return  setData(data)  
       });
   },[])

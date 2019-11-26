@@ -25,6 +25,26 @@ class People {
             console.log("Error", err);
           });
     }
+
+    registration(data){
+      return   fetch( 
+        'https://it-blog-posts.herokuapp.com/api/people',
+        {
+          method: "POST", 
+          body: JSON.stringify(data), 
+          headers: {
+            'Content-Type': 'application/json' 
+          }
+        }
+
+      )
+      // .then(function (response) {
+      //   console.log(response.status)
+      //})
+      .catch(function (err) {
+        console.log("Error", err);
+      });
+    }
 }
 
 export default People;
