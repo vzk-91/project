@@ -1,19 +1,25 @@
 import React,{useState, useEffect} from 'react';
-import {getPost} from '../../../api/index'
+import {getPost} from '../../../api/index';
+import {Spinner} from 'react-bootstrap';
 import './post.css'
 
 
 
 const Posts = (props) => {
     const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true)
 
     useEffect(()=>{
         getPost().then(function (data) { 
-          return  setData(data)  
+            setData(data)
+            setLoading(false)
       });
   },[])
+  console.log("post")
     return(
+
        <div className="content">
+            {loading  &&  <Spinner animation="grow" variant="danger" className="spiner"/> }
         {
             data.map((item)=>{
              return   <div className='item' key={item.id}>
@@ -27,4 +33,4 @@ const Posts = (props) => {
 }
 
 
-export default Posts;
+export default React.memo(Posts);

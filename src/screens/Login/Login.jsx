@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
-import './login.css'
+import {Button, Form} from 'react-bootstrap';
 import {login} from '../../api/index';
+
+import './login.css'
 
 
 const Login = () =>{
@@ -22,24 +24,25 @@ const Login = () =>{
           [name]: value 
         })
       }
-
+      console.log("login")
     return(
         <div className="logForm">
-                <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input name="email" type="email" onChange={hendleFormChange} value={email} className="form-control" id="email" placeholder="Enter Email" />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input name="password" type="password" onChange={hendleFormChange} value={password} className="form-control" id="password" placeholder="Enter Password"/>
-                </div>
-                 <div className="form-group form-check">
-                    <input type="checkbox" className="form-check-input" id="save" />
-                    <label name="save" className="form-check-label" htmlFor="save">Remember me</label>
-                </div>
-                    <button type="submit" className="btn loginbtn btn-primary" onClick={onSubmitForm} >Log In</button>             
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control  name="email" type="email" placeholder="Enter email" onChange={hendleFormChange} value={email} />
+            </Form.Group>
+
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control name="password" type="password" placeholder="Password" onChange={hendleFormChange} value={password} />
+            </Form.Group>
+                
+            <Form.Group controlId="formBasicCheckbox">
+              <Form.Check type="checkbox" label="Remember me" />
+            </Form.Group>
+                <Button variant="primary" onClick={onSubmitForm}>Log In</Button>            
         </div>
     )
 }
 
-export default Login;
+export default React.memo(Login);;

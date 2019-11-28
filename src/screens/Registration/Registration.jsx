@@ -1,5 +1,6 @@
-import React, {useState, useEffect}from "react";
+import React, {useState}from "react";
 import {registration} from '../../api/index';
+import {Button, Form} from 'react-bootstrap';
 import './registration.css';
 
 
@@ -22,47 +23,38 @@ const Registration = () => {
     
       const hendleFormChange = (event) => {
         const { target: { name, value } } = event;
+        console.log(event.target.name)
         setData({
           ...data,
           [name]: value 
         })
       }
 
-
     return(
-       
         <div className="logForm">
-        <div className="form-group">
-                    <label htmlFor="lastname">Last Name</label>
-                    <input name="lastname" type="name" className="form-control" onChange={hendleFormChange} value={lastname} placeholder="Last Name" />
-                  </div>
-        <div className="form-group">
-                    <label htmlFor="username">User Name</label>
-                    <input name="username" type="text" className="form-control" onChange={hendleFormChange} value={username} placeholder="User Name" />
-                  </div>
-        <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input name="password" type="password" className="form-control" onChange={hendleFormChange} value={password} placeholder="Password" />
-                  </div>
-        <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input name="email" type="email" className="form-control" onChange={hendleFormChange} value={email} placeholder="Email" />
-                  </div>
-        {/* <div class="custom-control custom-radio in">
-    //           <input type="radio" class="custom-control-input " id="defaultUnchecked" name="defaultExampleRadios" />
-    //           <label class="custom-control-label" for="defaultUnchecked">Male</label>
-    //         </div>
-    //         <div class="custom-control custom-radio in">
-    //               <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios" >
-    //               <label class="custom-control-label" for="defaultChecked">Female</label>
-    //             </div>
-    //           <div class="custom-control custom-checkbox in">
-    //                   <input type="checkbox" class="custom-control-input in" id="defaultUnchecked">
-    //                   <label class="custom-control-label" for="defaultUnchecked">Send Me Email</label>
-    //               </div> */}
-                  <button type="submit" className="btn btn-primary in" onClick={onSubmitForm}>OK</button>
+            <Form.Group controlId="formBasicLastName">
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control  name="lastname" type="email" placeholder="Last Name" onChange={hendleFormChange} value={lastname} />
+            </Form.Group>
+
+            <Form.Group controlId="formBasicUserName">
+              <Form.Label>User Name</Form.Label>
+              <Form.Control  name="username" type="email" placeholder="User Name" onChange={hendleFormChange} value={username} />
+            </Form.Group>
+
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control  name="email" type="email" placeholder="Enter email" onChange={hendleFormChange} value={email} />
+            </Form.Group>
+
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control name="password" type="password" placeholder="Password" onChange={hendleFormChange} value={password} />
+            </Form.Group>
+
+            <Button variant="primary" onClick={onSubmitForm}>Ok</Button>
                   </div>
     )
 }
 
-export default Registration;
+export default React.memo(Registration);;

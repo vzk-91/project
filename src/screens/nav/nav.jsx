@@ -3,6 +3,7 @@ import './nav.css';
 import {NavLink} from 'react-router-dom'
 
 const Nav = () => {
+    console.log("nav")
     return(
         <div className="nav">
         <NavLink to="/home" >Home</NavLink>
