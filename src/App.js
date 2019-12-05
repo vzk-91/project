@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from './screens/home/Home';
-import Nav from './screens/nav/nav';
+import Login from './screens/Login/Login';
+import Navigate from './screens/nav/nav';
 import Registration from './screens/Registration/Registration';
 import WorkSpace from './screens/WorkSpace/WorkSpace';
 import Footer from './screens/Footer/Footer';
@@ -9,20 +10,20 @@ import './App.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Login from './screens/Login/Login';
+
 
 function App() {
   return (
-   <BrowserRouter>
+  <BrowserRouter>
     <div className="App">
-      <Nav />
+      <Navigate />
       <Route  path='/home'  render={()=> <Home/>}/>;
-      <Route  path='/login'  render={()=> <Login/>}/>
-      <Route  path='/registration'  render={()=> <Registration/>}/>
+      <Route  path='/login'  render={(routeprops)=> <Login {...routeprops}/>}/>
+      <Route  path='/registration'  render={(routeprops)=> <Registration {...routeprops}/>}/>
       <Route  path='/workspace'  render={()=> <WorkSpace/>}/>
       <Route  path='/home'  render={()=> <Footer/>}/>;
     </div>
-   </BrowserRouter>
+  </BrowserRouter>
   );
 }
 

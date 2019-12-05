@@ -1,69 +1,36 @@
-import React, {useState} from 'react';
-import {Button, Modal, Form} from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
 import './workspace.css'
+import Items from './items';
+import ModalWindow from './Modal';
+import Header from './header'
+import { byId } from '../../api';
+import Storage from '../../services/storage'
 
 
 const WorkSpace = () => {
 
     const [show, setShow] = useState(false);
+    const [name, setName] = useState('');
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    useEffect(() => {
+        const user = Storage.get('user');
+        if (user) {
+            byId(user.id).then(data => {
+                setName(`${data.lastname} ${data.username}`)
+            })
+        }
+    }, [])
 
-    return(
+    return (
         <div className="main">
-
-        <div className="main-header">
-
-           <div className="info">
-            <div className="photo">
-                <img src="" alt="" />
-            </div>
-            <p className="name">Vahe Karapetyan</p>
-           </div>
-
-           <Button variant="dark" onClick={handleShow}>
-              New Post
-            </Button>
-        </div>
-
-        <Modal show={show} onHide={handleClose}>
-
-        <Modal.Header closeButton>
-          <Modal.Title>Create New Post</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-            <Form.Group controlId="formBasicTitle">
-              <Form.Control  name="title" type="email" placeholder="Title"  />
-            </Form.Group>
-            <Form.Group controlId="formBasic.ControlTextarea">
-                <Form.Control as="textarea" rows="3" placeholder="Description"/>
-            </Form.Group>
-        </Modal.Body>
-
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-
-          <Button variant="primary" onClick={handleClose}>
-            Save 
-          </Button>
-        </Modal.Footer>
-        </Modal>
-
-        <div className="section">
-            <div className="item"></div>
-            <div className="item"></div>
-            <div className="item"></div>
-            <div className="item"></div>
-            <div className="item"></div>
-        </div>
-
-    </div >
+            <Header handleShow={handleShow} name={name} />
+            <ModalWindow show={show} handleClose={handleClose} />
+            <Items />
+        </div >
     )
 }
 
-export default WorkSpace;
+export default React.memo(WorkSpace);

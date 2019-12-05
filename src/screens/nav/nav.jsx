@@ -1,17 +1,27 @@
 import React from 'react';
 import './nav.css';
-import {NavLink} from 'react-router-dom'
+import { Nav } from 'react-bootstrap';
+import Storage from '../../services/storage'
 
-const Nav = () => {
-    console.log("nav")
-    return(
-        <div className="nav">
-        <NavLink to="/home" >Home</NavLink>
-        <NavLink to="/login" >Log in</NavLink>
-        <NavLink to="/registration" >Registration</NavLink>
-        <NavLink to="/workspace" >Post</NavLink>
-    </div>
+const Navigate = () => {
+
+    return (
+        <Nav fill variant="tabs"  >
+            <Nav.Item>
+                <Nav.Link href="/home">Home</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+                <Nav.Link href="/login">{Storage.get("user") ? 'Log Out' : 'Log In'}</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+                <Nav.Link href="/registration" >Registration</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+                <Nav.Link href="/workspace" >Post</Nav.Link>
+            </Nav.Item>
+        </Nav>
+
     )
 }
 
-export default Nav;
+export default Navigate;

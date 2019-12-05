@@ -16,6 +16,7 @@ class Api {
   export const getPost = api.post.getPost;
   export const login = api.people.login;
   export const registration  = api.people.registration;
+  export const byId = api.people.byId;
 
   
 

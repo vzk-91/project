@@ -15,7 +15,7 @@ const Posts = (props) => {
             setLoading(false)
       });
   },[])
-  console.log("post")
+  
     return(
 
        <div className="content">

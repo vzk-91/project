@@ -4,7 +4,7 @@ import Post from './Post/Posts';
 import './Home.css'
 
 const Home = () => {
-    console.log("home")
+    
     return(
         <div className="mainhome">
      <Blogers />

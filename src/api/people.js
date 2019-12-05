@@ -16,14 +16,6 @@ class People {
               }
             }
           )
-        //   .then(response => {
-        //      if(response.status === 200){
-        //          window.open('/home')
-        //      }
-        //   })
-          .catch(function (err) {
-            console.log("Error", err);
-          });
     }
 
     registration(data){
@@ -36,14 +28,12 @@ class People {
             'Content-Type': 'application/json' 
           }
         }
-
       )
-      // .then(function (response) {
-      //   console.log(response.status)
-      //})
-      .catch(function (err) {
-        console.log("Error", err);
-      });
+    }
+
+    byId(id){
+     return  fetch(`https://it-blog-posts.herokuapp.com/api/people/${id}`)
+      .then(data=>data.json())
     }
 }
 
