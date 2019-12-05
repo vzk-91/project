@@ -4,13 +4,13 @@ import Post from './Post/Posts';
 import './Home.css'
 
 const Home = () => {
-    
-    return(
+
+    return (
         <div className="mainhome">
-     <Blogers />
-     <Post />
-     </div> 
+            <Blogers />
+            <Post />
+        </div>
     )
 }
 
-export default React.memo(Home);;
+export default React.memo(Home);

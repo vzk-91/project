@@ -32,7 +32,7 @@ class People {
     }
 
     byId(id){
-     return  fetch(`https://it-blog-posts.herokuapp.com/api/people/${id}`)
+      return  fetch(`https://it-blog-posts.herokuapp.com/api/people/${id}`)
       .then(data=>data.json())
     }
 }

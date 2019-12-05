@@ -27,7 +27,7 @@ const WorkSpace = () => {
     return (
         <div className="main">
             <Header handleShow={handleShow} name={name} />
-            <ModalWindow show={show} handleClose={handleClose} />
+            <ModalWindow show={show} handleClose={handleClose} name={name} />
             <Items />
         </div >
     )

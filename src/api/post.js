@@ -1,8 +1,21 @@
 class Post {
     
     getPost(){
-        return fetch('https://5d8e0901370f02001405c7c9.mockapi.io/api/v1/postblog/postblog')
+        return fetch('https://it-blog-posts.herokuapp.com/api/posts')
         .then(response => response.json())
+    }
+
+    post(data){
+        return fetch( 
+            'https://it-blog-posts.herokuapp.com/api/posts',
+            {
+              method: "POST", 
+              body: JSON.stringify(data), 
+              headers: {
+                'Content-Type': 'application/json' 
+              }
+            }
+          )
     }
 }
 

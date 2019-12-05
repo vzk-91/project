@@ -24,6 +24,7 @@
     flex-direction: column;
     border-radius: 10px;
     background-color: #614330;
+    overflow-y: scroll;
 }
 
 .discription{
