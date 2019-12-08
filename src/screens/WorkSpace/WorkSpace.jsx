@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
+import context from '../../context/context'
 import './workspace.css'
 import Items from './items';
 import ModalWindow from './Modal';
@@ -8,18 +9,17 @@ import Storage from '../../services/storage'
 
 
 const WorkSpace = () => {
+    const { state, dispatch } = useContext(context)
+    const {name, modalShow } = state;
 
-    const [show, setShow] = useState(false);
-    const [name, setName] = useState('');
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = () =>{dispatch({type : "Modal_Show"})};
+    const handleClose =() =>{dispatch({type : "Modal_Hide"})}
 
     useEffect(() => {
         const user = Storage.get('user');
         if (user) {
             byId(user.id).then(data => {
-                setName(`${data.lastname} ${data.username}`)
+                dispatch({ type: 'GetName', payload: `${data.lastname} ${data.username}`  })
             })
         }
     }, [])
@@ -27,7 +27,7 @@ const WorkSpace = () => {
     return (
         <div className="main">
             <Header handleShow={handleShow} name={name} />
-            <ModalWindow show={show} handleClose={handleClose} name={name} />
+            <ModalWindow show={modalShow} handleClose={handleClose} name={name} />
             <Items />
         </div >
     )

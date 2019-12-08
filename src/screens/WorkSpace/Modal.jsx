@@ -1,31 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
+import context from '../../context/context'
 import { post } from '../../api/index';
 import Storage from '../../services/storage'
 import { Button, Modal, Form } from 'react-bootstrap';
 
 const ModalWindow = ({ show, handleClose, name }) => {
-
-    const example = {
-        description: '',
-        title: '',   
-    }
-    const [data, setData] = useState(example);
-    const { description, title, } = data;
-    data.author = name;
-    data.personId = Storage.get('user').id;
+    const { state, dispatch } = useContext(context)
+    const { newPost } = state;
+    const { description, title, } = newPost;
+    newPost.author = name;
+    newPost.personId = Storage.get('user').id;
 
     const onSubmitForm = () => {
-        post(data)
-        setData(example)
-
+        post(newPost)
     }
 
     const hendleFormChange = (event) => {
         const { target: { name, value } } = event;
-        setData({
-            ...data,
-            [name]: value
-        })
+        dispatch({ type: 'New_Post', payload: { ...newPost, [name]: value } })
+        
     }
     return (
         <Modal show={show} onHide={handleClose}>

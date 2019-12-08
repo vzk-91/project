@@ -1,18 +1,19 @@
-import React,{useState, useEffect} from 'react';
+import React,{useState, useEffect,useContext} from 'react';
+import context from '../../../context/context'
 import {getPost} from '../../../api/index';
 import {Spinner} from 'react-bootstrap';
 import './post.css'
 
 
 
-const Posts = (props) => {
-    const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(true)
+const Posts = () => {
+    const {state,dispatch} = useContext(context)
+    const {posts,loading} = state;
 
     useEffect(()=>{
         getPost().then(function (data) { 
-            setData(data)
-            setLoading(false)
+            dispatch({type : "Fetch_Posts" , payload : data})
+            dispatch({type : "Spinner"})
       });
   },[])
   
@@ -21,7 +22,7 @@ const Posts = (props) => {
        <div className="content">
             {loading  &&  <Spinner animation="grow" variant="danger" className="spiner"/> }
         {
-            data.map((item)=>{
+            posts.map((item)=>{
              return   <div className='item' key={item.id}>
                 <div className='title'> <p>{item.author}</p>  <p>{item.title}</p>   </div>
                 <div className='discription'> {item.description}</div>

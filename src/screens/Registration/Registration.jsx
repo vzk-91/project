@@ -1,41 +1,31 @@
-import React, { useState } from "react";
+import React, {  useContext } from "react";
+import context from '../../context/context'
 import { registration } from '../../api/index';
 import { Button, Form } from 'react-bootstrap';
 import './registration.css';
 
 
 const Registration = (props) => {
-
-  const example = {
-    lastname: '',
-    username: '',
-    password: "",
-    email: ''
-  }
-  const [data, setData] = useState(example);
-  const { lastname, username, password, email } = data;
+  const { state, dispatch } = useContext(context)
+  const { registrationData } = state;
+  const { lastname, username, password, email } = registrationData;
 
   const onSubmitForm = () => {
-    registration(data)
-    .then(response => {
-      if (response.status === 200) {
-        props.history.push('/login')
-        return response.json()
-      }
-    });
-    setData(example)
+    registration(registrationData)
+      .then(response => {
+        if (response.status === 200) {
+          props.history.push('/login')
+          return response.json()
+        }
+      });
 
   }
 
   const hendleFormChange = (event) => {
     const { target: { name, value } } = event;
-    console.log(event.target.name)
-    setData({
-      ...data,
-      [name]: value
-    })
+    dispatch({ type: 'Registration', payload: { ...registrationData, [name]: value } })
   }
-  
+
   return (
     <div className="logForm">
       <Form.Group controlId="formBasicLastName">

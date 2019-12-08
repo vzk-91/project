@@ -6,6 +6,7 @@ class People {
     }
 
     login(data){
+      console.log(data)
        return fetch( 
             'https://it-blog-posts.herokuapp.com/api/people/login',
             {

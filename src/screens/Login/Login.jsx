@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import context from '../../context/context'
 import { Button, Form } from 'react-bootstrap';
 import { login } from '../../api/index';
 import Storage from '../../services/storage'
@@ -7,13 +8,11 @@ import './login.css'
 
 
 const Login = (props) => {
-  const example = { password: '', email: "" }
-
-  const [data, setData] = useState(example);
-  const { password, email } = data;
+  const {state,dispatch} = useContext(context)
+    const {loginData} = state;
 
   const onSubmitForm = () => {
-    login(data)
+    login(loginData)
       .then(response => {
         if (response.status === 200) {
           props.history.push('/workspace')
@@ -24,29 +23,25 @@ const Login = (props) => {
         const info = ({ token: data.id, id: data.userId })
         Storage.set('user', info)})
         .catch(error => {
-        throw new Error(error)
+        console.log(error)
       })
-    setData(example)
   }
 
   const hendleFormChange = (event) => {
     const { target: { name, value } } = event;
-    setData({
-      ...data,
-      [name]: value
-    })
+    dispatch({type : 'Login' , payload : {...loginData,[name] : value}})
   }
 
   return (
     <div className="logForm">
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
-        <Form.Control name="email" type="email" placeholder="Enter email" onChange={hendleFormChange} value={email} />
+        <Form.Control name="email" type="email" placeholder="Enter email" onChange={hendleFormChange} value={state.email} />
       </Form.Group>
 
       <Form.Group controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
-        <Form.Control name="password" type="password" placeholder="Password" onChange={hendleFormChange} value={password} />
+        <Form.Control name="password" type="password" placeholder="Password" onChange={hendleFormChange} value={state.password} />
       </Form.Group>
 
       <Form.Group controlId="formBasicCheckbox">
