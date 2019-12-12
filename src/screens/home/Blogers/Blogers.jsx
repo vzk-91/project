@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useContext } from 'react';
+import React, {  useEffect,useContext } from 'react';
 import context from '../../../context/context'
 import './blogers.css';
 import { Spinner } from 'react-bootstrap';

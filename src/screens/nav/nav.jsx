@@ -1,18 +1,25 @@
-import React from 'react';
+import React,{useContext,useEffect} from 'react';
 import './nav.css';
 import { Nav } from 'react-bootstrap';
-import Storage from '../../services/storage'
+import context from '../../context/context';
+import {logOut} from '../../api/index'
+
 
 const Navigate = () => {
+    const {state} = useContext(context)
+  
 
     return (
         <Nav fill variant="tabs"  >
             <Nav.Item>
                 <Nav.Link href="/home">Home</Nav.Link>
             </Nav.Item>
-            <Nav.Item>
-                <Nav.Link href="/login">{Storage.get("user") ? 'Log Out' : 'Log In'}</Nav.Link>
-            </Nav.Item>
+            {!state.id ? <Nav.Item>
+                <Nav.Link href="/login"> Log In</Nav.Link>
+            </Nav.Item> : 
+             <Nav.Item>
+                <Nav.Link href="/logout"> Log Out</Nav.Link>
+            </Nav.Item> }
             <Nav.Item>
                 <Nav.Link href="/registration" >Registration</Nav.Link>
             </Nav.Item>
@@ -24,4 +31,4 @@ const Navigate = () => {
     )
 }
 
-export default Navigate;
+export default React.memo(Navigate);

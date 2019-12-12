@@ -1,41 +1,17 @@
-.content {
+.contentpost {
     width: 70%;
     flex-direction: column;
-    max-height: 525px;
+    max-height: 520px;
     overflow: auto;
     text-align: center;
 }
 
 
-.title {
-    width: 95%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    background-color: #614330;
-}
 
-.item{
-    max-height: 150px;
-    border: 1px solid burlywood;
-    margin: 20px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
-    background-color: #614330;
-    overflow-y: scroll;
-}
+.item:hover{
+    
+    width: 96%;
+    border: 2px solid burlywood;
+    
 
-.discription{
-    border: 1px solid burlywood;
-    width: 95%;
-    height: 150px;
-    margin: 5px auto;
-    padding: 5px;
-    box-sizing: border-box;
-    background-color: #614330;
-}
-.spiner{
-    text-align: center;
-}
+} 

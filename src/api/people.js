@@ -1,3 +1,5 @@
+import Storage from '../services/storage';
+
 class People {
     
     getPeople(){
@@ -6,7 +8,6 @@ class People {
     }
 
     login(data){
-      console.log(data)
        return fetch( 
             'https://it-blog-posts.herokuapp.com/api/people/login',
             {
@@ -36,6 +37,23 @@ class People {
       return  fetch(`https://it-blog-posts.herokuapp.com/api/people/${id}`)
       .then(data=>data.json())
     }
+
+    logOut(data){
+      return fetch(`"https://it-blog-posts.herokuapp.com/api/people/logout?access_token=${data}`,
+      {
+        method: "POST", 
+        headers: {
+          'Content-Type': 'application/json' 
+        }
+      }
+      )
+      //.then(response => console.log(response))
+      
+    }
 }
 
+
 export default People;
+
+
+

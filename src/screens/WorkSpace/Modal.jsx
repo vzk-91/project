@@ -1,15 +1,14 @@
-import React, { useState,useContext } from 'react';
+import React, { useContext } from 'react';
 import context from '../../context/context'
 import { post } from '../../api/index';
-import Storage from '../../services/storage'
 import { Button, Modal, Form } from 'react-bootstrap';
 
 const ModalWindow = ({ show, handleClose, name }) => {
     const { state, dispatch } = useContext(context)
-    const { newPost } = state;
+    const { newPost, id } = state;
     const { description, title, } = newPost;
     newPost.author = name;
-    newPost.personId = Storage.get('user').id;
+    newPost.personId = id;
 
     const onSubmitForm = () => {
         post(newPost)

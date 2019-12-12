@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import context from '../../context/context'
 import { Button, Form } from 'react-bootstrap';
 import { login } from '../../api/index';
-import Storage from '../../services/storage'
+import Storage from '../../services/storage';
+
 
 import './login.css'
 
@@ -14,14 +15,18 @@ const Login = (props) => {
   const onSubmitForm = () => {
     login(loginData)
       .then(response => {
-        if (response.status === 200) {
-          props.history.push('/workspace')
-          return response.json()
+        if (response.status !== 200) {
+          return alert("Unable to log in")
         }
+       return response.json()
       })
       .then(data => {
         const info = ({ token: data.id, id: data.userId })
-        Storage.set('user', info)})
+        Storage.set('user', info)
+          dispatch({ type: 'ID', payload: data.id  })
+          props.history.push('/home')
+        }
+        )
         .catch(error => {
         console.log(error)
       })

@@ -19,6 +19,8 @@ class Api {
   export const byId = api.people.byId;
   export const post = api.post.post;
   export const getPostById = api.post.getPostById;
+  export const logOut = api.people.logOut;
+  export const remove = api.post.remove;
 
   
 

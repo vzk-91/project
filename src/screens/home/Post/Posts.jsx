@@ -1,4 +1,4 @@
-import React,{useState, useEffect,useContext} from 'react';
+import React,{ useEffect,useContext} from 'react';
 import context from '../../../context/context'
 import {getPost} from '../../../api/index';
 import {Spinner} from 'react-bootstrap';
@@ -19,7 +19,7 @@ const Posts = () => {
   
     return(
 
-       <div className="content">
+       <div className="contentpost">
             {loading  &&  <Spinner animation="grow" variant="danger" className="spiner"/> }
         {
             posts.map((item)=>{

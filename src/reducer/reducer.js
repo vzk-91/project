@@ -45,6 +45,16 @@ const reducer = (state, action) => {
                                                 ...state,
                                                 modalShow : false,
                                             }
+                                case "ID" :
+                                    return{
+                                        ...state,
+                                        id : action.payload
+                                    }
+                                    case "LOGOUT" :
+                                        return{
+                                            ...state,
+                                            id : ''
+                                        }
                                 default:
                                     return state;
     }

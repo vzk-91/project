@@ -27,4 +27,6 @@
     }
 }
 
-export const storage = new Storage();
+
+//export const id = Storage.get('user').id;
+

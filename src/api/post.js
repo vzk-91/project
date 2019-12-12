@@ -1,5 +1,3 @@
-import Storage from '../services/storage';
-
 class Post {
 
     getPost() {
@@ -18,11 +16,20 @@ class Post {
             }
         )}
 
-        // getPostById(id) {
-        //     return fetch(`https://it-blog-posts.herokuapp.com/api/posts/${id}`)
-        //         .then(response => response.json())  
-        // }
+        getPostById(id) {
+            return fetch(`https://it-blog-posts.herokuapp.com/api/people/${id}/posts`)
+                .then(response => response.json())  
+        }
       
+        remove(id){
+            return fetch(`https://it-blog-posts.herokuapp.com/api/posts/${id}`,{
+                method: "DELETE",
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+            )
+        }
 }
 
 export default Post;

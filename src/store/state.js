@@ -1,7 +1,13 @@
 export const state = {
     blogers: [],
 
-    posts: [],
+    posts: [{
+        author : '',
+        id : '',
+        description : '',
+        title : ""
+
+    }],
 
     loginData: {
         password: '',
@@ -25,4 +31,6 @@ export const state = {
     loading: true,
 
     modalShow: false,
+
+    id : ""
 }
