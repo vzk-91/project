@@ -5,7 +5,7 @@ import Navigate from './screens/nav/nav';
 import Registration from './screens/Registration/Registration';
 import WorkSpace from './screens/WorkSpace/WorkSpace';
 import Footer from './screens/Footer/Footer';
-import {BrowserRouter, Route } from 'react-router-dom';
+import {BrowserRouter, Route, HashRouter } from 'react-router-dom';
 import context from './context/context';
 import reducer from './reducer/reducer';
 import Storage from './services/storage'
@@ -27,7 +27,7 @@ function App() {
         }
   , [])
   return (
-  <BrowserRouter>
+  <HashRouter>
     <context.Provider value={{state,dispatch}}>
     <div className="App">
       <Navigate id={state.id} />
@@ -36,11 +36,12 @@ function App() {
       <Route  path='/logout'  render={(routeprops)=> <LogOut  {...routeprops}/>}/>
       <Route  path='/registration'  render={(routeprops)=> <Registration {...routeprops}/>}/>
       <Route  path='/workspace'  render={()=> <WorkSpace/>}/>
-      <Route  path='/home'  render={()=> <Footer/>}/>;
+      <Route  path='/home'  render={()=> <Footer/>}/>
     </div>
     </context.Provider>
-  </BrowserRouter>
+  </HashRouter>
   );
 }
 
 export default App;
+

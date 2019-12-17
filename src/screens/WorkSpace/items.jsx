@@ -23,7 +23,7 @@ const Items = () => {
                 dispatch({ type: "Spinner" })
             });
         }
-    }, [posts])
+    }, [posts,id])
 
     const removePost = (itemId)=>{
         remove(itemId)

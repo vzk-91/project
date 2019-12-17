@@ -8,7 +8,7 @@ class People {
     }
 
     login(data){
-       return fetch( 
+      return fetch( 
             'https://it-blog-posts.herokuapp.com/api/people/login',
             {
               method: "POST", 
